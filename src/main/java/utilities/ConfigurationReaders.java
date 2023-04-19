@@ -11,7 +11,7 @@ public class ConfigurationReaders {
 	public Properties initialiseProperties() {
 		prop = new Properties();
 		try {
-			FileInputStream reader = new FileInputStream("C:\\Users\\prashantrautela\\eclipse-workspace\\Framework\\Framework_Cucumber_A001\\src\\main\\java\\utilities\\config.properties");
+			FileInputStream reader = new FileInputStream("C:\\Users\\prashantrautela\\eclipse-workspace\\Framework\\te\\src\\main\\java\\utilities\\config.properties");
 			prop.load(reader);
 			
 		} catch (FileNotFoundException e) {
