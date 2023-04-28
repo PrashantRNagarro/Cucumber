@@ -5,12 +5,14 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.maven.shared.utils.io.FileUtils;
+import org.hamcrest.Matchers;
 
 import com.aventstack.extentreports.model.Test;
 import com.google.common.io.Files;
@@ -49,6 +51,8 @@ public class APIUtilities {
 		Response res = spec.get();
 		
 		// parsing json response as test class which could be pojo class.
+		
+		
 		//deserialising the json response
 		System.out.println(res.getBody().as(Test.class));
 
@@ -59,7 +63,12 @@ public class APIUtilities {
 		String jsonString = "{\"username\" : \"admin\",\"password\" : \"password123\"}";
 
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(jsonString).when().post();
-
+		
+		ValidatableResponse resp = RestAssured.given().contentType(ContentType.JSON).body(jsonString).when().post().then();
+		
+		
+		//resp.body("", Matchers.hasSize())
+		
 		System.out.println(response.body() + " " + response.getStatusCode());
 
 	}
